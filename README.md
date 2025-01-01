@@ -1,3 +1,5 @@
+__A work in progress__
+
 # cv-theremin
 A handtracking and 2D camera based digital theremin
 
