@@ -27,6 +27,10 @@ Open VS Code:
 Install required dependencies:
 `python3 -m pip install -r requirements.txt`
 
+<h2>To run tests</h2>
+
+`pytest tests/camera_test.py -v --tb=short --camera 0`
+
 <h2>Other libraries considered but not used</h2>
 
 - [pygame](https://www.pygame.org/news) 
