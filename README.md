@@ -6,9 +6,10 @@ A handtracking and 2D camera based digital theremin
 <h2>Tools used</h2>
 
 - Python v3.10.12 for programming
-- `opencv_contrib_python` for camera usage and frames manipulation
-- `mediapipe` for hand tracking
-- `pipreqs` for listing all requirements
+- [`opencv_contrib_python`](https://github.com/opencv/opencv-python?tab=readme-ov-file#installation-and-usage) for camera usage and frames manipulation
+- [`mediapipe`](https://github.com/google-ai-edge/mediapipe) for hand tracking
+- [`pyo`](https://github.com/belangeo/pyo) for audio managment
+- [`pipreqs`](https://github.com/bndr/pipreqs) for listing all requirements
 
 <h2>Usage of the theremin in a virtual environment</h2>
 
