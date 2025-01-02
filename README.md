@@ -24,12 +24,16 @@ Activate it:
 Open VS Code:
 `code .`
 
+Be sure to use the correct Python interpreter, e.g.:
+`../bin/python3`
+
 Install required dependencies:
 `python3 -m pip install -r requirements.txt`
 
 <h2>To run tests</h2>
 
 `pytest tests/camera_test.py -v --tb=short --camera 0`
+`python3 tests/handtracking_test.py`
 
 <h2>Other libraries considered but not used</h2>
 
