@@ -80,7 +80,7 @@ class HandDetector:
                 myHand["bbox"] = bbox  # store bounding box
                 myHand["center"] = (cx, cy)  # store center coordinates
 
-                if flipType:  # if flipType is True, adjust hand type
+                if flipType: # if flipType is True, adjust hand type
                     if handType.classification[0].label == "Right":
                         myHand["type"] = "Left"  # flip to "Left" if right hand
                     else:

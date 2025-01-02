@@ -61,7 +61,7 @@ def main():
 
             # Calculate distance between the index fingers of both hands and draw it on the image
             length, info, img = detector.findDistance(lmList1[8][0:2], lmList2[8][0:2], img, color=(255, 0, 0),
-                                                        scale=10)
+                                                      scale=10)
 
         if (random.random() < .1):
             global fps 
