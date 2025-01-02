@@ -31,6 +31,9 @@ Be sure to use the correct Python interpreter, e.g.:
 Install required dependencies:
 `python3 -m pip install -r requirements.txt`
 
+Run main program:
+`python3 main.py`
+
 <h2>To run tests</h2>
 
 `pytest tests/camera_test.py -v --tb=short --camera 0`
