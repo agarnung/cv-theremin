@@ -38,8 +38,8 @@ class HandDetector:
                                         min_tracking_confidence=self.minTrackCon)
 
         self.mpDraw = mp.solutions.drawing_utils
-        self.tipIds = [4, 8, 12, 16, 20]  # tip identifiers for the fingers
-        self.fingers = []  # list to store the finger states (up or down)
+        self.tipIds = [4, 8, 12, 16, 20] # tip identifiers for the fingers
+        self.fingers = [] # list to store the finger states (up or down)
         self.lmList = []  # list to store the hand landmark coordinates
 
     def findHands(self, img, draw=True, flipType=True):
@@ -49,85 +49,85 @@ class HandDetector:
         :param draw: Flag to draw landmarks and hand outline on the image.
         :return: Detected hands and the processed image.
         """
-        imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  # convert image to RGB for mediapipe
+        imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) # convert image to RGB for mediapipe
         self.results = self.hands.process(imgRGB)
-        allHands = []  # list to store all detected hands
-        h, w, c = img.shape  # get image dimensions
+        allHands = [] # list to store all detected hands
+        h, w, c = img.shape # get image dimensions
 
         if self.results.multi_hand_landmarks:  # if hands are detected
             for handType, handLms in zip(self.results.multi_handedness, self.results.multi_hand_landmarks):
-                myHand = {}  # dictionary to store information about the hand
+                myHand = {} # dictionary to store information about the hand
 
                 # lmList: list of 21 landmarks for the hand
                 mylmList = []  # list to store the landmarks
-                xList = []  # list for x-coordinates
-                yList = []  # list for y-coordinates
-                for id, lm in enumerate(handLms.landmark):  # enumerate through each landmark
+                xList = [] # list for x-coordinates
+                yList = [] # list for y-coordinates
+                for id, lm in enumerate(handLms.landmark): # enumerate through each landmark
                     px, py, pz = int(lm.x * w), int(lm.y * h), int(lm.z * w)  # calculate pixel positions
                     mylmList.append([px, py, pz])  # add to landmarks list
-                    xList.append(px)  # add x-coordinate to xList
-                    yList.append(py)  # add y-coordinate to yList
+                    xList.append(px) # add x-coordinate to xList
+                    yList.append(py) # add y-coordinate to yList
 
                 # bbox: Bounding box around the hand
-                xmin, xmax = min(xList), max(xList)  # min and max x coordinates
-                ymin, ymax = min(yList), max(yList)  # min and max y coordinates
-                boxW, boxH = xmax - xmin, ymax - ymin  # width and height of the bounding box
-                bbox = xmin, ymin, boxW, boxH  # bounding box coordinates
+                xmin, xmax = min(xList), max(xList) # min and max x coordinates
+                ymin, ymax = min(yList), max(yList) # min and max y coordinates
+                boxW, boxH = xmax - xmin, ymax - ymin # width and height of the bounding box
+                bbox = xmin, ymin, boxW, boxH # bounding box coordinates
                 cx, cy = bbox[0] + (bbox[2] // 2), \
-                         bbox[1] + (bbox[3] // 2)  # center of the bounding box
+                         bbox[1] + (bbox[3] // 2) # center of the bounding box
 
-                myHand["lmList"] = mylmList  # store landmarks in dictionary
-                myHand["bbox"] = bbox  # store bounding box
-                myHand["center"] = (cx, cy)  # store center coordinates
+                myHand["lmList"] = mylmList # store landmarks in dictionary
+                myHand["bbox"] = bbox # store bounding box
+                myHand["center"] = (cx, cy) # store center coordinates
 
                 if flipType: # if flipType is True, adjust hand type
                     if handType.classification[0].label == "Right":
-                        myHand["type"] = "Left"  # flip to "Left" if right hand
+                        myHand["type"] = "Left" # flip to "Left" if right hand
                     else:
-                        myHand["type"] = "Right"  # flip to "Right" if left hand
+                        myHand["type"] = "Right" # flip to "Right" if left hand
                 else:
-                    myHand["type"] = handType.classification[0].label  # set hand type as per the mediapipe result
-                allHands.append(myHand)  # add hand to allHands list
+                    myHand["type"] = handType.classification[0].label # set hand type as per the mediapipe result
+                allHands.append(myHand) # add hand to allHands list
 
                 # draw landmarks and bounding box on image if draw is True
                 if draw:
                     self.mpDraw.draw_landmarks(img, handLms,
-                                               self.mpHands.HAND_CONNECTIONS)  # draw hand landmarks
+                                               self.mpHands.HAND_CONNECTIONS) # draw hand landmarks
                     cv2.rectangle(img, (bbox[0] - 20, bbox[1] - 20),
                                   (bbox[0] + bbox[2] + 20, bbox[1] + bbox[3] + 20),
-                                  (255, 0, 255), 2)  # draw bounding box around hand
+                                  (255, 0, 255), 2) # draw bounding box around hand
                     cv2.putText(img, myHand["type"], (bbox[0] - 30, bbox[1] - 30), cv2.FONT_HERSHEY_PLAIN,
-                                2, (255, 0, 255), 2)  # label hand type
+                                2, (255, 0, 255), 2) # label hand type
 
-        return allHands, img  # return detected hands and image with markings
+        return allHands, img # return detected hands and image with markings
 
     def fingersUp(self, myHand):
         """
         Detects how many fingers are up and returns them in a list.
         :return: List of fingers that are up (1 for up, 0 for down).
         """
-        fingers = []  # list to store which fingers are up
-        myHandType = myHand["type"]  # get hand type (left or right)
-        myLmList = myHand["lmList"]  # get the landmarks list
+        fingers = [] # list to store which fingers are up
+        myHandType = myHand["type"] # get hand type (left or right)
+        myLmList = myHand["lmList"] # get the landmarks list
 
         # Thumb
         if myHandType == "Right":
             if myLmList[self.tipIds[0]][0] > myLmList[self.tipIds[0] - 1][0]:
-                fingers.append(1)  # thumb is up if x-coordinate of tip is greater
+                fingers.append(1) # thumb is up if x-coordinate of tip is greater
             else:
-                fingers.append(0)  # thumb is down if not
+                fingers.append(0) # thumb is down if not
         else:
             if myLmList[self.tipIds[0]][0] < myLmList[self.tipIds[0] - 1][0]:
-                fingers.append(1)  # thumb is up if x-coordinate of tip is less
+                fingers.append(1) # thumb is up if x-coordinate of tip is less
             else:
-                fingers.append(0)  # thumb is down if not
+                fingers.append(0) # thumb is down if not
 
         # 4 Fingers
-        for id in range(1, 5):  # loop through the remaining fingers
+        for id in range(1, 5): # loop through the remaining fingers
             if myLmList[self.tipIds[id]][1] < myLmList[self.tipIds[id] - 2][1]:
-                fingers.append(1)  # finger is up if y-coordinate of tip is smaller
+                fingers.append(1) # finger is up if y-coordinate of tip is smaller
             else:
-                fingers.append(0)  # finger is down if not
+                fingers.append(0) # finger is down if not
         return fingers
 
     def findDistance(self, p1, p2, img=None, color=(255, 0, 255), scale=5):
@@ -139,19 +139,19 @@ class HandDetector:
         :return: Distance between the points, image with drawing (if any), and line information
         """
 
-        x1, y1 = p1  # extract coordinates of point 1
-        x2, y2 = p2  # extract coordinates of point 2
-        cx, cy = (x1 + x2) // 2, (y1 + y2) // 2  # calculate the center between the two points
-        length = math.hypot(x2 - x1, y2 - y1)  # calculate the Euclidean distance
-        info = (x1, y1, x2, y2, cx, cy)  # store line and center info
+        x1, y1 = p1 # extract coordinates of point 1
+        x2, y2 = p2 # extract coordinates of point 2
+        cx, cy = (x1 + x2) // 2, (y1 + y2) // 2 # calculate the center between the two points
+        length = math.hypot(x2 - x1, y2 - y1) # calculate the Euclidean distance
+        info = (x1, y1, x2, y2, cx, cy) # store line and center info
 
-        if img is not None:  # if an image is provided, draw the line and circles
-            cv2.circle(img, (x1, y1), scale, color, cv2.FILLED)  # draw circle at point 1
-            cv2.circle(img, (x2, y2), scale, color, cv2.FILLED)  # draw circle at point 2
-            cv2.line(img, (x1, y1), (x2, y2), color, max(1, scale // 3))  # draw line between points
-            cv2.circle(img, (cx, cy), scale, color, cv2.FILLED)  # draw circle at the center
+        if img is not None: # if an image is provided, draw the line and circles
+            cv2.circle(img, (x1, y1), scale, color, cv2.FILLED) # draw circle at point 1
+            cv2.circle(img, (x2, y2), scale, color, cv2.FILLED) # draw circle at point 2
+            cv2.line(img, (x1, y1), (x2, y2), color, max(1, scale // 3)) # draw line between points
+            cv2.circle(img, (cx, cy), scale, color, cv2.FILLED) # draw circle at the center
 
-        return length, info, img  # return distance, line information, and updated image
+        return length, info, img # return distance, line information, and updated image
 
 # Principal program for testing the module
 def main():
