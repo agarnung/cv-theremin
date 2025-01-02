@@ -37,6 +37,7 @@ Run main program:
 <h2>To run tests</h2>
 
 `pytest tests/camera_test.py -v --tb=short --camera 0`
+
 `python3 tests/handtracking_test.py`
 
 <h2>Other libraries considered but not used</h2>
