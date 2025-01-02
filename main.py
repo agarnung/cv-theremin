@@ -6,7 +6,6 @@ def main():
                         camera_id=0,
                         staticMode=False, maxHands=2, modelComplexity=1, detectionCon=0.9, minTrackCon=0.5
                         )
-
     theremin.start()
 
 if __name__ == "__main__":
