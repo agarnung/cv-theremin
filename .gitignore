@@ -10,6 +10,11 @@
 *.dll
 *.dylib
 
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
 # Qt-es
 object_script.*.Release
 object_script.*.Debug
