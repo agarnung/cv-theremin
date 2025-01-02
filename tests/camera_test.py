@@ -5,7 +5,7 @@ import sys
 import os
 import pytest
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) # to include ../CameraModule
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))+'/modules') # to include ../modules/CameraModule
 from CameraModule import Camera
 
 # Fixture to read the camera index from pytest options
