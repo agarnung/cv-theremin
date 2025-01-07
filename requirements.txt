@@ -1,5 +1,7 @@
+matplotlib==3.10.0
 mediapipe==0.10.20
 numpy==2.2.1
 opencv_contrib_python==4.10.0.84
 pyo==1.0.5
 pytest==8.3.4
+scikit_fuzzy==0.5.0
