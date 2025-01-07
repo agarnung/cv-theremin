@@ -17,7 +17,7 @@ def calculate_fuzzy_sets(variable, min_val, max_val, use_gaussian):
         # Fuzzy membership functions for low, medium, and high
         variable['low'] = fuzz.trimf(variable.universe, [min_val, min_val, low_max])
         variable['medium'] = fuzz.trimf(variable.universe, [medium_min, (min_val + max_val) / 2, medium_max])
-        variable['high'] = fuzz.trimf(variable.universe, [high_min, max_val, max_val]).
+        variable['high'] = fuzz.trimf(variable.universe, [high_min, max_val, max_val])
     else:
         range_span = max_val - min_val
         center_low = min_val + range_span * 0.125
@@ -51,10 +51,10 @@ def main():
     frequency = ctrl.Consequent(np.arange(frequency_range[0], frequency_range[1] + 1, 1), 'frequency')
 
     # Create fuzzy sets for each variable
-    calculate_fuzzy_sets(openness, *openness_range)
-    calculate_fuzzy_sets(proximity, *proximity_range)
-    calculate_fuzzy_sets(distance, *distance_range)
-    calculate_fuzzy_sets(frequency, *frequency_range)
+    calculate_fuzzy_sets(openness, *openness_range, True)
+    calculate_fuzzy_sets(proximity, *proximity_range, True)
+    calculate_fuzzy_sets(distance, *distance_range, True)
+    calculate_fuzzy_sets(frequency, *frequency_range, True)
 
     # Define fuzzy rules
     rule1 = ctrl.Rule(proximity['low'] & distance['low'] & openness['low'], frequency['low'])
