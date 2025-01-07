@@ -10,6 +10,7 @@ A handtracking and 2D camera based digital theremin
 - [`mediapipe`](https://github.com/google-ai-edge/mediapipe) for hand tracking
 - [`pyo`](https://github.com/belangeo/pyo) for audio managment
 - [`pipreqs`](https://github.com/bndr/pipreqs) for listing all requirements
+- [`skfuzzy`](https://pythonhosted.org/scikit-fuzzy/) for fuzzy sets implementation of tone control
 
 <h2>Usage of the theremin in a virtual environment</h2>
 
@@ -53,3 +54,6 @@ Run main program:
 - https://www.youtube.com/watch?v=m_rmwcUREeY
 - https://gist.github.com/sahithyen/b20922c902620e5bd6fd926263a93836
 - https://splice.com/blog/how-theremin-works/
+
+<h2>TODO</h2>
+- Reference fuzzy sets book
