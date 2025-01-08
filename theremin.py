@@ -9,7 +9,9 @@ import skfuzzy as fuzz
 from skfuzzy import control as ctrl
 
 class Theremin:
-    def __init__(self, min_frequency=200, max_frequency=600,
+    def __init__(self, 
+                 use_fuzzy = False,
+                 min_frequency=200, max_frequency=600,
                  initial_frequency=440, initial_volume=0.0, 
                  camera_id=0,
                  staticMode=False, maxHands=2, modelComplexity=1, detectionCon=0.5, minTrackCon=0.5):
@@ -20,7 +22,9 @@ class Theremin:
         self.hd = HandDetector(staticMode=staticMode, maxHands=maxHands, modelComplexity=modelComplexity, 
                                detectionCon=detectionCon, minTrackCon=minTrackCon)
         self.running = True # ensure it can start the loop
-        self.initialize_production_rules()
+        self.use_fuzzy = use_fuzzy
+        if self.use_fuzzy:
+            self.initialize_production_rules()
 
     def calculate_fuzzy_sets(self, variable, min_val, max_val, use_gaussian):
         """
@@ -233,8 +237,10 @@ class Theremin:
                     
                     # Frequency for right hand
                     if right_hand:
-                        # new_frequency = self.compute_tone_crisp(width, height, right_hand)
-                        new_frequency = self.compute_tone_fuzzy(width, height, right_hand)
+                        if not self.use_fuzzy:
+                            new_frequency = self.compute_tone_crisp(width, height, right_hand)
+                        else:
+                            new_frequency = self.compute_tone_fuzzy(width, height, right_hand)
                         self.audio.update_frequency(new_frequency)
                         print(f"Frequency: {new_frequency:.2f}", end=" ")
 
