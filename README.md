@@ -56,4 +56,4 @@ Run main program:
 - https://splice.com/blog/how-theremin-works/
 
 <h2>TODO</h2>
-- Reference fuzzy sets book
+- Bartelt, T. L. M. (2001). Industrial Control Electronics: Devices, Systems & Applications (2ª ed.). Thomson Delmar Learning (p. 73).
