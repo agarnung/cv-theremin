@@ -30,7 +30,7 @@ The two main (nonlinear) sources of distortion that a real (pinhole) camera intr
 - **Tangential (pincushion) distortion**: This usually occurs when the image screen or sensor is at an angle relative to the lens. That is, the image-taking lens is not perfectly aligned parallel to the imaging plane. Thus, the image appears tilted and stretched.
 
 <div style="text-align: center;">
-  <img src="../assets/tangential.png" alt="tangential" width="300>
+  <img src="../assets/tangential.png" alt="tangential" width="300">
 </div>
 
 Some sources add two alternative types of distortion: decentering distortion and thin prism distortion, which have both radial and tangential effects simultaneously. But in practice, we will proceed with the models presented.
@@ -128,8 +128,14 @@ Parameters saved in 'camera_matrix.npy' and 'dist_coeffs.npy'.
 
 See this website [4] where they manually build and explain the concepts of a pinhole camera. And this article from Medium for the history of the pinhole camera [5].
 
+# References
+
 [1] Birchfield, Stan. Image Processing and Analysis (Activate Learning with these NEW titles from Engineering!), 1st ed., Cengage Learning, 2017.  
+
 [2] https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html  
+
 [3] https://learnopencv.com/understanding-lens-distortion/  
+
 [4] https://www.diyphotography.net/the-comprehensive-tech-guide-to-pinhole-photography/  
+
 [5] https://medium.com/swlh/estimating-the-object-distance-using-the-camera-obscura-formulas-and-lens-equations-python-7baaa75a26b8
