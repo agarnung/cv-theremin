@@ -5,7 +5,7 @@ The Theremin operates in one (and only one) of the following modes:
 🖐️ Naïve Method – Maps 2D structural and morphological features of the hand to tones.
 🧠 Fuzzy Logic – Uses hand pose and geometry to intelligently determine tones.
 📏 Pinhole Depth Estimation – Calculates hand distance from the camera and translates it into sound (see [theory](modules/cameraCalibration/README.md)).
-
+z
 <h2>Tools used</h2>
 
 - [Python v3.10.12](https://docs.python-guide.org/starting/install3/linux/) for programming
