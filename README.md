@@ -7,7 +7,7 @@ The Theremin operates in one (and only one) of the following modes:
 
 🧠 **Fuzzy Logic** – Uses hand pose and geometry to intelligently determine tones.
 
-📏 **Pinhole Depth Estimation** – Calculates hand distance from the camera and translates it into sound (see [theory](modules/cameraCalibration/README.md)).
+📏 **Pinhole Depth Estimation** – Calculates hand distance from the camera and translates it into sound (see [theory](./cameraCalibration/README.md)).
 
 <h2>Tools used</h2>
 
