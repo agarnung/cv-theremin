@@ -18,19 +18,19 @@ The two main (nonlinear) sources of distortion that a real (pinhole) camera intr
 - Barrel distortion: This corresponds to negative radial displacement
 
 <div style="text-align: center;">
-  <img src="../assets/barrel.png" alt="barrel" width="600" height="400">
+  <img src="../assets/barrel.png" alt="barrel" width="300">
 </div>
 
 - Pincushion distortion: This corresponds to positive radial displacement
 
 <div style="text-align: center;">
-  <img src="../assets/pincushion" alt="pincushion" width="600" height="400">
+  <img src="../assets/pincushion.png" alt="pincushion" width="300">
 </div>
 
 - **Tangential (pincushion) distortion**: This usually occurs when the image screen or sensor is at an angle relative to the lens. That is, the image-taking lens is not perfectly aligned parallel to the imaging plane. Thus, the image appears tilted and stretched.
 
 <div style="text-align: center;">
-  <img src="../assets/tangential" alt="tangential" width="600" height="400">
+  <img src="../assets/tangential.png" alt="tangential" width="300>
 </div>
 
 Some sources add two alternative types of distortion: decentering distortion and thin prism distortion, which have both radial and tangential effects simultaneously. But in practice, we will proceed with the models presented.
