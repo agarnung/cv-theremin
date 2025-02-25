@@ -1,0 +1,1 @@
+# Este archivo, aunque esté vacío, le indica a Python que trate la carpeta como un paquete, para poder importar los módulos fácilmente.

@@ -1,6 +1,7 @@
 from modules.AudioModule import Audio
 from modules.CameraModule import Camera
 from modules.HandTrackingModule import HandDetector
+from modules.DepthThereminModule import DepthTheremin  
 
 import cv2
 import numpy as np
@@ -11,6 +12,7 @@ from skfuzzy import control as ctrl
 class Theremin:
     def __init__(self, 
                  use_fuzzy = False,
+                 use_depth = False,
                  min_frequency=200, max_frequency=600,
                  initial_frequency=440, initial_volume=0.0, 
                  camera_id=0,
@@ -23,7 +25,11 @@ class Theremin:
                                detectionCon=detectionCon, minTrackCon=minTrackCon)
         self.running = True # ensure it can start the loop
         self.use_fuzzy = use_fuzzy
-        if self.use_fuzzy:
+        self.use_depth = use_depth
+        # Prevalece la profundidad sobre la lógica difusa
+        if self.use_depth:
+            self.depth_module = DepthTheremin(min_frequency=min_frequency, max_frequency=max_frequency)
+        elif self.use_fuzzy:
             self.initialize_production_rules()
 
     def calculate_fuzzy_sets(self, variable, min_val, max_val, use_gaussian):
@@ -237,12 +243,17 @@ class Theremin:
                     
                     # Frequency for right hand
                     if right_hand:
-                        if not self.use_fuzzy:
-                            new_frequency = self.compute_tone_crisp(width, height, right_hand)
+                        if self.use_depth:
+                            new_frequency, depth = self.depth_module.compute_tone_depth(right_hand["bbox"])
+                            self.audio.update_frequency(new_frequency)
+                            print(f"Depth: {depth:.2f} cm, Frequency: {new_frequency:.2f} Hz", end=" ")
                         else:
-                            new_frequency = self.compute_tone_fuzzy(width, height, right_hand)
-                        self.audio.update_frequency(new_frequency)
-                        print(f"Frequency: {new_frequency:.2f}", end=" ")
+                            if not self.use_fuzzy:
+                                new_frequency = self.compute_tone_crisp(width, height, right_hand)
+                            else:
+                                new_frequency = self.compute_tone_fuzzy(width, height, right_hand)
+                            self.audio.update_frequency(new_frequency)
+                            print(f"Frequency: {new_frequency:.2f}", end=" ")
 
                     # Volume for left hand
                     if left_hand:
