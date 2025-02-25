@@ -3,11 +3,11 @@ A handtracking and 2D camera based digital theremin 🎶.
 
 The Theremin operates in one (and only one) of the following modes:
 
-🖐️ Naïve Method – Maps 2D structural and morphological features of the hand to tones.
+🖐️ **Naïve Method** – Maps 2D structural and morphological features of the hand to tones.
 
-🧠 Fuzzy Logic – Uses hand pose and geometry to intelligently determine tones.
+🧠 **Fuzzy Logic** – Uses hand pose and geometry to intelligently determine tones.
 
-📏 Pinhole Depth Estimation – Calculates hand distance from the camera and translates it into sound (see [theory](modules/cameraCalibration/README.md)).
+📏 **Pinhole Depth Estimation** – Calculates hand distance from the camera and translates it into sound (see [theory](modules/cameraCalibration/README.md)).
 
 <h2>Tools used</h2>
 
