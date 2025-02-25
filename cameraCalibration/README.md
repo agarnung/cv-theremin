@@ -17,9 +17,9 @@ The two main (nonlinear) sources of distortion that a real (pinhole) camera intr
 
 - Barrel distortion: This corresponds to negative radial displacement
 
-<div style="text-align: center;">
+<p align="center">
   <img src="../assets/barrel.png" alt="barrel" width="300">
-</div>
+</p>
 
 - Pincushion distortion: This corresponds to positive radial displacement
 
