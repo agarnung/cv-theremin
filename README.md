@@ -61,5 +61,8 @@ Run main program:
 - https://gist.github.com/sahithyen/b20922c902620e5bd6fd926263a93836
 - https://splice.com/blog/how-theremin-works/
 
-<h2>TODO</h2>
+<h2>References</h2>
 - Bartelt, T. L. M. (2001). Industrial Control Electronics: Devices, Systems & Applications (2ª ed.). Thomson Delmar Learning (p. 73).
+
+<h2>TODO</h2>
+- Versión para móvil o web.
