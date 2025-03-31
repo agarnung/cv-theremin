@@ -67,3 +67,4 @@ Run main program:
 <h2>TODO</h2>
 - Versión para móvil o web.
 - Hacer interfaz estática tipo HUD como aqui: https://www.linkedin.com/posts/francastano_visiaejnartificial-inteligenciaartificial-activity-7307811734059151362-2_2m?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFXLzVABTf15btKvx3DmtCu91bAxFIwl-gs.
+- Otro modo de funcionamiento: monocular dephtmap estimation con DL, en vez de la aproximación pinhole que hice, ver [esto](https://stackoverflow.com/questions/64685185/is-there-a-way-to-generate-real-time-depthmap-from-single-camera-video-in-python) y [esto](https://openaccess.thecvf.com/content_ICCV_2019/html/Godard_Digging_Into_Self-Supervised_Monocular_Depth_Estimation_ICCV_2019_paper.html).
