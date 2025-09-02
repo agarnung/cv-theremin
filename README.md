@@ -71,3 +71,7 @@ Run main program:
 - Hacer interfaz estática tipo HUD como [aqui](https://www.linkedin.com/posts/francastano_visiaejnartificial-inteligenciaartificial-activity-7307811734059151362-2_2m?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFXLzVABTf15btKvx3DmtCu91bAxFIwl-gs).
 
 - Otro modo de funcionamiento: monocular dephtmap estimation con DL, en vez de la aproximación pinhole que hice, ver [esto](https://stackoverflow.com/questions/64685185/is-there-a-way-to-generate-real-time-depthmap-from-single-camera-video-in-python) y [esto](https://openaccess.thecvf.com/content_ICCV_2019/html/Godard_Digging_Into_Self-Supervised_Monocular_Depth_Estimation_ICCV_2019_paper.html).
+
+- Usar barras de estado de [este estilo](https://www.linkedin.com/posts/siddhartha-reddy-054321341_python-opencv-mediapipe-activity-7360493210772598784-o8ko?utm_source=share&utm_medium=member_android&rcm=ACoAAFXLzVABTf15btKvx3DmtCu91bAxFIwl-gs)
+
+
