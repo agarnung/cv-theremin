@@ -74,4 +74,5 @@ Run main program:
 
 - Usar barras de estado de [este estilo](https://www.linkedin.com/posts/siddhartha-reddy-054321341_python-opencv-mediapipe-activity-7360493210772598784-o8ko?utm_source=share&utm_medium=member_android&rcm=ACoAAFXLzVABTf15btKvx3DmtCu91bAxFIwl-gs)
 
+- Hacer otro plugin que use kalman filter pal seguimiento mano theremin (tamaño posición,..), ver pag 183 simon prince
 
