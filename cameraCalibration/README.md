@@ -116,7 +116,27 @@ based on the minimum (maximum frequency) and maximum (minimum frequency) distanc
 
 We will use OpenCV for a direct implementation via the Zhang method, which is highly efficient because it disregards the third dimension ($Z=0$) by taking advantage of the flatness of the chessboard and using the absolute conic. To achieve better results, at least 10 captures of the test pattern are recommended.
 
-Once calibration is performed (by running the script `calibrate_camera.py`), the module `DepthThereminModule.py` loads the calibration parameters (`camera_matrix.npy` and `dist_coeffs.npy`), calculates the distance of the hand to the (optical center of the) camera using the pinhole model relationship (for the transferred frame), and maps the obtained distance to a frequency within the desired range.
+Once calibration is performed (by running the script `calibrate_camera.py`), the module `DepthThereminModule.py` loads the calibration parameters (`camera_matrix.npy` and `dist_coeffs.npy`), calculates the distance of the hand to the (optical center of) the camera using the pinhole model relationship (for the transferred frame), and maps the obtained distance to a frequency within the desired range.
+
+## Using the calibration app
+
+1. Print `../assets/chessboard-to-print.pdf` (9x6 inner corners, 30 mm squares).
+2. Set `camera.index`, `camera.width` and `camera.height` in `../config.yaml`.
+3. Run:
+
+   ```bash
+   python3 cameraCalibration/calibrate_camera.py
+   ```
+
+4. Show the board at different angles and distances until the window says
+   `Patron detectado`. Press `c` to capture each valid view (at least 10).
+5. Press `q` to finish. The calibration files are written to
+   `cameraCalibration/results/`.
+6. Set `pitch.mode: "pinhole"` in `../config.yaml` to use them.
+
+The script prints the mean reprojection error in pixels. A good result is **below
+1 px**; **below 0.5 px** is excellent. If it is above **2 px**, repeat the
+calibration with more views, better lighting and the board as flat as possible.
 
 ## Expected (typical) calibration output
 

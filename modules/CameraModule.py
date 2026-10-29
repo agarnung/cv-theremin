@@ -11,16 +11,27 @@ class Camera:
     Class representing a camera to capture frames.
     """
 
-    def __init__(self, source: Union[int, str] = 0) -> None:
+    def __init__(self, source: Union[int, str] = 0,
+                 width: int = None, height: int = None,
+                 fps_limit: int = None) -> None:
         """
         Initialize the camera.
 
         :param source: Index of the camera device (default is 0) or a path to a local video file.
+        :param width: Requested capture width in pixels.
+        :param height: Requested capture height in pixels.
+        :param fps_limit: Requested capture frame rate.
         """
         self.source = source
         self.cap = cv2.VideoCapture(source)
         if not self.cap.isOpened():
             raise ValueError(f"Cannot open camera or video source: {source}")
+        if width is not None:
+            self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, int(width))
+        if height is not None:
+            self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, int(height))
+        if fps_limit is not None:
+            self.cap.set(cv2.CAP_PROP_FPS, int(fps_limit))
 
     def read(self) -> Tuple[bool, Union[None, cv2.Mat]]:
         """

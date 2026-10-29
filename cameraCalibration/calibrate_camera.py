@@ -8,6 +8,7 @@ import os
 # Agregar el directorio raíz al sys.path para poder importar módulos
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 from modules.CameraModule import Camera
+from modules.ConfigModule import Config
 
 def main():
     # Configuración del patrón de calibración
@@ -27,8 +28,14 @@ def main():
     objpoints = []  # Puntos en el mundo real
     imgpoints = []  # Puntos en la imagen
 
-    # Inicializar la cámara usando el módulo Camera
-    camera = Camera(2)  # Cambiar el índice según tu dispositivo
+    # Inicializar la cámara usando el índice y la resolución de config.yaml
+    config_path = os.path.join(os.path.dirname(__file__), "..", "config.yaml")
+    camera_cfg = Config(config_path).data.get("camera", {})
+    camera = Camera(
+        camera_cfg.get("index", 0),
+        width=camera_cfg.get("width"),
+        height=camera_cfg.get("height"),
+    )
     
     captured_count = 0
     minimum_required = 10  # Se requiere al menos 10 imágenes válidas para calibrar
@@ -95,7 +102,13 @@ def main():
         error = cv.norm(imgpoints[i], imgpoints2, cv.NORM_L2) / len(imgpoints2)
         mean_error += error
     mean_error /= len(objpoints)
-    print("Error de re-proyeccion: ", mean_error)
+    print("Error de re-proyeccion: ", mean_error, "px")
+    if mean_error < 0.5:
+        print("Calidad: excelente (< 0.5 px).")
+    elif mean_error < 1.0:
+        print("Calidad: buena (< 1 px).")
+    else:
+        print("Calidad: alta; repite con mas vistas, mejor luz y el tablero plano.")
     
     # Definir la ruta absoluta para guardar los resultados en 'cameraCalibration/results/'
     results_dir = os.path.join(os.path.dirname(__file__), "results")

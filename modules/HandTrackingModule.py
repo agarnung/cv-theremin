@@ -101,6 +101,12 @@ class HandDetector:
 
         return allHands, img # return detected hands and image with markings
 
+    def close(self):
+        """Release the MediaPipe Hands resource."""
+        close = getattr(self.hands, "close", None)
+        if close is not None:
+            close()
+
     def fingersUp(self, myHand):
         """
         Detects how many fingers are up and returns them in a list.

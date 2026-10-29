@@ -1,0 +1,66 @@
+# cv-theremin configuration. Changes are applied while the theremin is running.
+camera:
+  index: 0                 # camera device index; 0 is color, 2 is the grayscale IR camera
+  width: 640               # lower = faster and less detail; higher = slower and more detail
+  height: 480              # lower = faster and less detail; higher = slower and more detail
+  fps_limit: 30            # lower = fewer frames and less CPU; higher = smoother but more CPU
+  mirror: true             # true = mirror preview; false = raw camera (then set flip_type true)
+
+audio:
+  output_device: 6         # pyo output index; 6 = Speaker, 4 = headphones, null = auto
+  sample_rate: 48000        # lower = less CPU but worse quality; higher = better quality but more CPU
+  channels: 2               # 1 = mono; 2 = stereo
+  buffer_size: 256          # lower = less latency but more CPU; higher = more latency but less CPU
+  duplex: 0                 # 0 = output only; 1 = input and output
+  initial_frequency: 440    # starting pitch in Hz
+  initial_volume: 0.0       # starting volume; 0 = silent, 1 = maximum
+
+pitch:
+  mode: "depth_anything"    # naive | fuzzy | pinhole | depth_anything
+  min_frequency: 200        # lower = deeper sound; higher = less low range
+  max_frequency: 600        # lower = less high range; higher = brighter sound
+
+volume:
+  source: "left"            # left = only left hand; right = only right hand; auto = left, or right if only one; both = any visible hand
+  fallback: 0.5            # lower = quieter when the left hand is missing; higher = louder
+  min: 0.0                  # lower = can go fully silent; higher = never fully silent
+  max: 1.0                  # lower = quieter maximum; higher = louder maximum
+  gamma: 1.5                # higher = makes low volumes quieter; lower = makes low volumes louder
+
+depth:
+  model: "LiheYoung/depth-anything-small-hf"  # Hugging Face Depth Anything model id
+  input_size: 336           # lower = faster and less accurate; higher = slower and more accurate
+  device: "auto"            # auto | cuda | mps | cpu
+  half_precision: true      # true = faster and slightly less precise; false = slower and more precise
+  inference_ttl: 2.0        # lower = fresher but more CPU; higher = more tolerant but staler
+  patch_scale: 0.25         # lower = smaller hand sample and noisier; higher = larger and smoother
+
+filter:
+  enabled: true            # true = smooth the sound; false = raw and jittery
+  frequency_min_cutoff: 1.0  # lower = smoother pitch but more lag; higher = more responsive but more jitter
+  frequency_beta: 0.05      # lower = smoother and slower; higher = more reactive and jittery
+  volume_min_cutoff: 2.0    # lower = smoother volume but more lag; higher = more responsive but more jitter
+  volume_beta: 0.5          # lower = smoother and slower; higher = more reactive and jittery
+  d_cutoff: 1.0             # lower = smoother speed estimate; higher = noisier speed estimate
+
+display:
+  mode: "hud"               # hud = draw theremin, hands and values; raw = camera frame only
+
+hand_tracking:
+  static_mode: false        # false = track every frame (faster); true = detect every frame (slower)
+  max_hands: 2              # lower = fewer hands; higher = more hands
+  model_complexity: 1       # 0 = faster and less accurate; 1 = slower and more accurate
+  detection_confidence: 0.5  # lower = more detections and false positives; higher = fewer detections
+  tracking_confidence: 0.5   # lower = more tracking and false positives; higher = fewer detections
+  flip_type: false          # false with a mirrored preview; true with a raw camera frame
+
+reload:
+  enabled: true            # true = watch this file and apply changes live; false = only at startup
+  check_interval: 1.0       # lower = checks more often and uses more CPU; higher = checks less often
+
+debug:
+  show_hud: true            # true = draw the theremin HUD; false = hide it
+  hud_svg: "assets/theremin_pov.svg"  # SVG theremin drawn in perspective
+  hud_scale: 0.75           # lower = smaller HUD; higher = larger HUD
+  hud_opacity: 0.85          # lower = more transparent; higher = more opaque
+  hud_position: "bottom_center"  # bottom_center | bottom_left | bottom_right | center | top_center
