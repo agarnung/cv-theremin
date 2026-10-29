@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#20303c" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#081016" stop-opacity="0.96"/>
+    </linearGradient>
+    <linearGradient id="top" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b5568" stop-opacity="0.92"/>
+      <stop offset="1" stop-color="#16242f" stop-opacity="0.92"/>
+    </linearGradient>
+    <linearGradient id="side" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#13212b" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#05090d" stop-opacity="0.96"/>
+    </linearGradient>
+    <linearGradient id="antenna" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#39f6ff" stop-opacity="0.4"/>
+      <stop offset="0.5" stop-color="#d9feff" stop-opacity="1"/>
+      <stop offset="1" stop-color="#39f6ff" stop-opacity="0.4"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#39f6ff" stop-opacity="0.9"/>
+      <stop offset="0.45" stop-color="#39f6ff" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#39f6ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowpink">
+      <stop offset="0" stop-color="#ff4fd8" stop-opacity="0.85"/>
+      <stop offset="0.5" stop-color="#ff4fd8" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#ff4fd8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <g opacity="0.2" stroke="#39f6ff" stroke-width="1" fill="none">
+    <path d="M400 245 L120 600 M400 245 L280 600 M400 245 L440 600 M400 245 L600 600 M400 245 L760 600"/>
+    <path d="M180 510 L660 510 M150 550 L690 550"/>
+  </g>
+
+  <ellipse cx="400" cy="566" rx="270" ry="24" fill="#000000" opacity="0.42"/>
+
+  <g>
+    <path d="M220 420 L580 420 L650 560 L150 560 Z" fill="url(#body)" stroke="#39f6ff" stroke-opacity="0.65" stroke-width="2"/>
+    <path d="M220 420 L580 420 L560 386 L240 386 Z" fill="url(#top)" stroke="#39f6ff" stroke-opacity="0.55" stroke-width="2"/>
+    <path d="M580 420 L650 560 L626 570 L560 434 Z" fill="url(#side)"/>
+    <path d="M240 386 L560 386 L580 420 L220 420 Z" fill="none" stroke="#39f6ff" stroke-opacity="0.35" stroke-width="1"/>
+
+    <path d="M320 455 L480 455 L495 505 L305 505 Z" fill="#06121a" stroke="#6dff8a" stroke-opacity="0.7" stroke-width="1.5"/>
+    <circle cx="352" cy="480" r="7" fill="#6dff8a" opacity="0.95"/>
+    <circle cx="382" cy="480" r="7" fill="#39f6ff" opacity="0.95"/>
+    <circle cx="412" cy="480" r="7" fill="#ff4fd8" opacity="0.95"/>
+    <path d="M440 471 L470 471 M440 480 L470 480 M440 489 L470 489" stroke="#d9feff" stroke-opacity="0.75" stroke-width="2"/>
+
+    <circle cx="565" cy="160" r="36" fill="url(#glow)"/>
+    <path d="M565 395 L565 160" stroke="url(#antenna)" stroke-width="9" stroke-linecap="round"/>
+    <path d="M565 395 L565 160" stroke="#ffffff" stroke-opacity="0.85" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="565" cy="160" r="11" fill="#d9feff" opacity="0.98"/>
+    <circle cx="565" cy="160" r="5" fill="#ffffff"/>
+
+    <circle cx="230" cy="350" r="48" fill="url(#glowpink)"/>
+    <g transform="rotate(-18 230 350)">
+      <ellipse cx="230" cy="350" rx="92" ry="36" fill="none" stroke="#ff4fd8" stroke-opacity="0.55" stroke-width="10"/>
+      <ellipse cx="230" cy="350" rx="92" ry="36" fill="none" stroke="#ffd6f6" stroke-opacity="0.95" stroke-width="2"/>
+    </g>
+    <path d="M230 386 L230 426" stroke="#ff4fd8" stroke-opacity="0.8" stroke-width="7" stroke-linecap="round"/>
+    <path d="M230 386 L230 426" stroke="#ffd6f6" stroke-opacity="0.9" stroke-width="1.5" stroke-linecap="round"/>
+
+    <text x="565" y="120" fill="#d9feff" font-family="sans-serif" font-size="18" text-anchor="middle" letter-spacing="2">PITCH</text>
+    <text x="230" y="295" fill="#ffd6f6" font-family="sans-serif" font-size="18" text-anchor="middle" letter-spacing="2">VOLUME</text>
+    <text x="400" y="375" fill="#6dff8a" font-family="sans-serif" font-size="14" text-anchor="middle" letter-spacing="4" opacity="0.85">THEREMIN</text>
+  </g>
+</svg>

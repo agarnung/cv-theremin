@@ -56,10 +56,20 @@ class DepthTheremin:
         freq = self.min_frequency + (self.max_frequency - self.min_frequency) * ((self.d_max - depth) / (self.d_max - self.d_min))
         return freq
 
-    def compute_tone_depth(self, hand_bbox):
+    def update_config(self, min_frequency=None, max_frequency=None, **kwargs):
+        """Apply tuning changes without reloading the camera calibration."""
+        if min_frequency is not None:
+            self.min_frequency = float(min_frequency)
+        if max_frequency is not None:
+            self.max_frequency = float(max_frequency)
+
+    def compute_tone_depth(self, hand_bbox, hand_center=None):
         """
         Combina los métodos anteriores para obtener la frecuencia y la profundidad.
-        
+
+        ``hand_center`` se acepta por compatibilidad con el backend Depth Anything,
+        pero la estimación pinhole solo necesita el bounding box.
+
         Retorna:
             frequency: frecuencia calculada.
             depth: profundidad estimada en cm.
